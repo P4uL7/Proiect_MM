@@ -49,4 +49,12 @@ public class DataContainer {
 		this.criteriaName = criteriaName;
 	}
 
+	public double[][] getValues() {
+		return values;
+	}
+
+	public void setValues(double[][] values) {
+		this.values = values;
+	}
+
 }

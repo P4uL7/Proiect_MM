@@ -23,7 +23,7 @@ public class SecondWindow extends JFrame {
 
 		pack();
 
-		setTitle("Time Tracking App");
+		setTitle("Proiect MM");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);

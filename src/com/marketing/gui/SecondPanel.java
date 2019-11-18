@@ -1,15 +1,19 @@
 package com.marketing.gui;
 
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -21,14 +25,18 @@ public class SecondPanel extends JPanel {
 		final DataContainer data = DataContainer.getInstance();
 		final JTextField[] critNames = new JTextField[data.getCritCount()];
 
-		this.setLayout(new GridLayout(data.getCritCount() + 2, 1));
-		this.setPreferredSize(new Dimension(550, 200));
-		this.setBorder(new EmptyBorder(15, 15, 5, 15));
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.setPreferredSize(new Dimension(500, 400));
+		this.setBorder(new EmptyBorder(15, 15, 15, 15));
 
 		final JLabel title = new JLabel("Dati numele criteriilor:", SwingConstants.CENTER);
 		title.setFont(new Font(title.getName(), Font.BOLD, 16));
+		title.setAlignmentX(Component.CENTER_ALIGNMENT);
 		add(title);
+		add(new JLabel(" "));
 
+		final JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(0, 1));
 		for (int i = 0; i < data.getCritCount(); i++) {
 			final JPanel critPan = new JPanel();
 			final JLabel label = new JLabel("Criteriul " + (i + 1) + ":");
@@ -38,10 +46,16 @@ public class SecondPanel extends JPanel {
 			critPan.add(label);
 			critPan.add(critNames[i]);
 
-			add(critPan);
+			panel.add(critPan);
 		}
 
-		final JPanel pan = new JPanel();
+		final JScrollPane sp = new JScrollPane(panel);
+		sp.setBorder(BorderFactory.createEmptyBorder());
+		sp.setAlignmentX(Component.CENTER_ALIGNMENT);
+		add(sp);
+
+		add(new JLabel(" "));
+
 		final JButton button = new JButton("OK");
 		button.setPreferredSize(new Dimension(60, 25));
 		button.addActionListener(e -> {
@@ -56,8 +70,8 @@ public class SecondPanel extends JPanel {
 			showNextWindow();
 
 		});
-		pan.add(button);
-		add(pan);
+		button.setAlignmentX(Component.CENTER_ALIGNMENT);
+		add(button);
 	}
 
 	private void showNextWindow() {
