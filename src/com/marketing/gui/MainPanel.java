@@ -1,32 +1,85 @@
 package com.marketing.gui;
 
+import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 public class MainPanel extends JPanel {
 	private static final long serialVersionUID = 732452956504787039L;
-
-	JLabel title;
+	JTextField critCount;
+	JTextField varCount;
 
 	public MainPanel() {
 
-		this.setLayout(null);
-		this.setPreferredSize(new Dimension(900, 325));
-		this.setBorder(new EmptyBorder(30, 30, 30, 30));
+		this.setLayout(new GridLayout(3, 1, 5, 5));
+		this.setPreferredSize(new Dimension(550, 200));
+		this.setBorder(new EmptyBorder(5, 15, 5, 15));
+		JLabel title = new JLabel("Marketing App", SwingConstants.CENTER);
+		title.setFont(new Font(title.getName(), Font.BOLD, 24));
 
-		addTitle();
+		add(title);
+		add(pan());
 
+		JPanel pan = new JPanel();
+		JButton button = new JButton("OK");
+		button.setPreferredSize(new Dimension(60, 25));
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DataContainer data = DataContainer.getInstance();
+				data.setCritCount(critCount.getText().isEmpty() ? 0 : Integer.parseInt(critCount.getText().trim()));
+				data.setVarCount(varCount.getText().isEmpty() ? 0 : Integer.parseInt(varCount.getText().trim()));
+
+				Container parent = getParent();
+				while (parent.getParent() != null) {
+					parent = parent.getParent();
+					System.out.println(parent);
+				}
+
+				EventQueue.invokeLater(() -> {
+					SecondWindow second = new SecondWindow();
+					second.setVisible(true);
+				});
+
+				((JFrame) parent).dispose();
+			}
+		});
+		pan.add(button);
+
+		add(pan);
 	}
 
-	private void addTitle() {
-		title = new JLabel("Marketing App", SwingConstants.CENTER);
-		title.setFont(new Font(title.getName(), Font.BOLD, 16));
-		title.setBounds(100, 40, 100, 25);
-		this.add(title);
+	private JPanel pan() {
+		JPanel pan = new JPanel();
+		pan.setLayout(new GridLayout(2, 1, 5, 5));
+
+		JPanel top = new JPanel();
+		top.add(new JLabel("Care este numarul de criterii pe care doriti sa le introduceti?", SwingConstants.LEFT));
+		critCount = new JTextField();
+		critCount.setPreferredSize(new Dimension(60, 25));
+		top.add(critCount);
+
+		JPanel bottom = new JPanel();
+		bottom.add(new JLabel("Care este numarul de variabile pe care doriti ca fiecare criteriu sa le aibe?", SwingConstants.LEFT));
+		varCount = new JTextField();
+		varCount.setPreferredSize(new Dimension(60, 25));
+		bottom.add(varCount);
+
+		pan.add(top);
+		pan.add(bottom);
+
+		return pan;
 	}
+
 }
