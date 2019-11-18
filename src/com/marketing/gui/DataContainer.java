@@ -7,24 +7,15 @@ public class DataContainer {
 	private int critCount = 0;
 	private int varCount = 0;
 
-	public int getCritCount() {
-		return critCount;
-	}
+	private String[] criteriaName;
 
-	public void setCritCount(int critCount) {
-		this.critCount = critCount;
-	}
+	private double[][] values;
 
-	public int getVarCount() {
-		return varCount;
-	}
-
-	public void setVarCount(int varCount) {
-		this.varCount = varCount;
-	}
+	private double[][] utilityMatrix;
+	private double[] coef;
+	private double[] generalUtility;
 
 	private DataContainer() {
-		// initialize data
 	}
 
 	public static DataContainer getInstance() {
@@ -33,4 +24,29 @@ public class DataContainer {
 
 		return instance;
 	}
+
+	public int getCritCount() {
+		return critCount;
+	}
+
+	public void setCritCount(final int critCount) {
+		this.critCount = critCount;
+	}
+
+	public int getVarCount() {
+		return varCount;
+	}
+
+	public void setVarCount(final int varCount) {
+		this.varCount = varCount;
+	}
+
+	public String[] getCriteriaNames() {
+		return criteriaName;
+	}
+
+	public void setCriteriaNames(final String[] criteriaName) {
+		this.criteriaName = criteriaName;
+	}
+
 }

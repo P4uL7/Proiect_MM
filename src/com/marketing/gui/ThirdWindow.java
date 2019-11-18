@@ -1,15 +1,13 @@
 package com.marketing.gui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class App extends JFrame {
-	private static final long serialVersionUID = 6959462203764281942L;
+public class ThirdWindow extends JFrame {
+	private static final long serialVersionUID = -7555558156203001923L;
 
-	public App() {
+	public ThirdWindow() {
 		initUI();
 	}
 
@@ -21,7 +19,7 @@ public class App extends JFrame {
 			e.printStackTrace();
 		}
 
-		add(new MainPanel());
+		add(new ThirdPanel());
 
 		pack();
 
@@ -30,12 +28,4 @@ public class App extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 	}
-
-	public static void main(final String[] args) {
-		EventQueue.invokeLater(() -> {
-			final App app = new App();
-			app.setVisible(true);
-		});
-	}
-
 }
