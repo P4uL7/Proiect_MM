@@ -21,7 +21,7 @@ public class App extends JFrame {
 			e.printStackTrace();
 		}
 
-		// add(new BasePanel());
+		add(new MainPanel());
 
 		pack();
 
