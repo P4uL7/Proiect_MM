@@ -21,8 +21,8 @@ public class ThirdPanel extends JPanel {
 
 	public ThirdPanel() {
 		final DataContainer data = DataContainer.getInstance();
-		this.setPreferredSize(new Dimension(550, 200));
-		this.setBorder(new EmptyBorder(5, 15, 5, 0));
+		this.setPreferredSize(new Dimension(Math.min(1200, 170 + data.getCritCount() * 125), 90 + data.getVarCount() * 16));
+		this.setBorder(new EmptyBorder(15, 15, 15, 15));
 
 		final JLabel title = new JLabel("Introduceti variabilele fiecarui criteriu:", SwingConstants.CENTER);
 		title.setFont(new Font(title.getName(), Font.BOLD, 16));
@@ -54,7 +54,7 @@ public class ThirdPanel extends JPanel {
 		// table.getColumnModel().getColumn(3).setCellEditor(new DefaultCellEditor(comboBox));
 
 		final JScrollPane sp = new JScrollPane(table);
-		sp.setPreferredSize(new Dimension(400, 127));
+		sp.setPreferredSize(new Dimension(Math.min(1100, data.getCritCount() * 125), 28 + data.getVarCount() * 16));
 		sp.setOpaque(true);
 		add(sp, BorderLayout.CENTER);
 

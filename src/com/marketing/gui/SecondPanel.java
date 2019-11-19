@@ -26,7 +26,7 @@ public class SecondPanel extends JPanel {
 		final JTextField[] critNames = new JTextField[data.getCritCount()];
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setPreferredSize(new Dimension(500, 400));
+		this.setPreferredSize(new Dimension(500, Math.min(125 + data.getCritCount() * 40, 600)));
 		this.setBorder(new EmptyBorder(15, 15, 15, 15));
 
 		final JLabel title = new JLabel("Dati numele criteriilor:", SwingConstants.CENTER);
@@ -53,8 +53,6 @@ public class SecondPanel extends JPanel {
 		sp.setBorder(BorderFactory.createEmptyBorder());
 		sp.setAlignmentX(Component.CENTER_ALIGNMENT);
 		add(sp);
-
-		add(new JLabel(" "));
 
 		final JButton button = new JButton("OK");
 		button.setPreferredSize(new Dimension(60, 25));
