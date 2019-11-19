@@ -24,8 +24,8 @@ public class MainPanel extends JPanel {
 		this.setLayout(new GridLayout(3, 1, 5, 5));
 		this.setPreferredSize(new Dimension(550, 200));
 		this.setBorder(new EmptyBorder(5, 15, 5, 15));
-		final JLabel title = new JLabel("Marketing App", SwingConstants.CENTER);
-		title.setFont(new Font(title.getName(), Font.BOLD, 24));
+		final JLabel title = new JLabel("Metoda utilitatii globale", SwingConstants.CENTER);
+		title.setFont(new Font(title.getName(), Font.BOLD, 22));
 
 		add(title);
 		add(pan());
