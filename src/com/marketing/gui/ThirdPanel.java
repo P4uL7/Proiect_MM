@@ -58,12 +58,12 @@ public class ThirdPanel extends JPanel {
 			dataz[data.getVarCount() + 1][j] = new Boolean(false);
 
 		//
-		List<TableCellEditor> editors = new ArrayList<TableCellEditor>(data.getCritCount());
-		JCheckBox[] boxes = new JCheckBox[data.getCritCount()];
+		final List<TableCellEditor> editors = new ArrayList<>(data.getCritCount());
+		final JCheckBox[] boxes = new JCheckBox[data.getCritCount()];
 		for (int i = 0; i < data.getCritCount(); i++) {
-			JCheckBox checkBox = new JCheckBox();
+			final JCheckBox checkBox = new JCheckBox();
 			checkBox.setHorizontalAlignment(SwingConstants.CENTER);
-			DefaultCellEditor dce = new DefaultCellEditor(checkBox);
+			final DefaultCellEditor dce = new DefaultCellEditor(checkBox);
 			editors.add(dce);
 			boxes[i] = checkBox;
 		}
@@ -71,14 +71,16 @@ public class ThirdPanel extends JPanel {
 		//
 		final TableModel model = new EditableTableModel(columnNames, dataz);
 		final JTable table = new JTable(model) {
-			public TableCellEditor getCellEditor(int row, int column) {
+			@Override
+			public TableCellEditor getCellEditor(final int row, final int column) {
 				if (row == data.getVarCount() + 1 && column != 0)
 					return editors.get(column - 1);
 				else
 					return super.getCellEditor(row, column);
 			}
 
-			public TableCellRenderer getCellRenderer(int row, int column) {
+			@Override
+			public TableCellRenderer getCellRenderer(final int row, final int column) {
 				if (row == data.getVarCount() + 1 && column != 0)
 					return new CheckBoxCellRenderer(boxes[column - 1]);
 				else if (column == 0)
@@ -110,11 +112,12 @@ public class ThirdPanel extends JPanel {
 	class CheckBoxCellRenderer implements TableCellRenderer {
 		JCheckBox combo;
 
-		public CheckBoxCellRenderer(JCheckBox comboBox) {
+		public CheckBoxCellRenderer(final JCheckBox comboBox) {
 			this.combo = comboBox;
 		}
 
-		public Component getTableCellRendererComponent(JTable jtable, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+		@Override
+		public Component getTableCellRendererComponent(final JTable jtable, final Object value, final boolean isSelected, final boolean hasFocus, final int row, final int column) {
 			return combo;
 		}
 
