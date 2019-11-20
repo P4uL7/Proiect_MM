@@ -25,7 +25,6 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 
 public class ThirdPanel extends JPanel {
-	private static final long serialVersionUID = 5174745425152574232L;
 
 	public ThirdPanel() {
 		final DataContainer data = DataContainer.getInstance();

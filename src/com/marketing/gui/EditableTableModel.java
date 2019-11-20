@@ -3,7 +3,6 @@ package com.marketing.gui;
 import javax.swing.table.AbstractTableModel;
 
 class EditableTableModel extends AbstractTableModel {
-	private static final long serialVersionUID = 6424001624305680388L;
 
 	String[] columnTitles;
 	DataContainer data;

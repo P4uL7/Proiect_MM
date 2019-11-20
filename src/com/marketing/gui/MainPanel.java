@@ -15,7 +15,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 public class MainPanel extends JPanel {
-	private static final long serialVersionUID = 732452956504787039L;
 	JTextField critCount;
 	JTextField varCount;
 

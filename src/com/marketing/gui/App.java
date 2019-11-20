@@ -7,7 +7,6 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 public class App extends JFrame {
-	private static final long serialVersionUID = 6959462203764281942L;
 
 	public App() {
 		initUI();

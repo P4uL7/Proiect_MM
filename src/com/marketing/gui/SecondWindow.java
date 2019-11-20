@@ -5,7 +5,6 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 public class SecondWindow extends JFrame {
-	private static final long serialVersionUID = -4779892562856594519L;
 
 	public SecondWindow() {
 		initUI();

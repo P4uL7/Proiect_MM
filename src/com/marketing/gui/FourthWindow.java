@@ -5,7 +5,6 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 public class FourthWindow extends JFrame {
-	private static final long serialVersionUID = -8102204958553060840L;
 
 	public FourthWindow() {
 		initUI();
