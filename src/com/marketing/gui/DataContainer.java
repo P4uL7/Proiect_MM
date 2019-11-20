@@ -10,9 +10,10 @@ public class DataContainer {
 	private String[] criteriaName;
 
 	private double[][] values;
+	private double[] coef;
+	private boolean[] fav;
 
 	private double[][] utilityMatrix;
-	private double[] coef;
 	private double[] generalUtility;
 
 	private DataContainer() {
@@ -39,6 +40,18 @@ public class DataContainer {
 
 	public void setVarCount(final int varCount) {
 		this.varCount = varCount;
+
+		if (this.critCount != 0 && this.varCount != 0) {
+			values = new double[this.varCount][this.critCount];
+
+			coef = new double[this.critCount];
+			fav = new boolean[this.critCount];
+			for (int i = 0; i < fav.length; i++)
+				fav[i] = false;
+
+			utilityMatrix = new double[this.varCount][this.critCount];
+			generalUtility = new double[this.critCount];
+		}
 	}
 
 	public String[] getCriteriaNames() {
@@ -53,8 +66,16 @@ public class DataContainer {
 		return values;
 	}
 
-	public void setValues(double[][] values) {
-		this.values = values;
+	public void setValueAt(double value, int row, int column) {
+		this.values[row][column] = value;
+	}
+
+	public void setCoefAt(double value, int index) {
+		this.coef[index] = value;
+	}
+
+	public void setFavAt(boolean value, int index) {
+		this.fav[index] = value;
 	}
 
 }

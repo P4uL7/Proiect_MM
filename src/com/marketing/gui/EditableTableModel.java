@@ -6,7 +6,7 @@ class EditableTableModel extends AbstractTableModel {
 	private static final long serialVersionUID = 6424001624305680388L;
 
 	String[] columnTitles;
-
+	DataContainer data;
 	Object[][] dataEntries;
 
 	int rowCount;
@@ -14,6 +14,11 @@ class EditableTableModel extends AbstractTableModel {
 	public EditableTableModel(final String[] columnTitles, final Object[][] dataEntries) {
 		this.columnTitles = columnTitles;
 		this.dataEntries = dataEntries;
+
+		for (int i = 0; i < dataEntries.length - 1; i++)
+			for (int j = 1; j < columnTitles.length; j++)
+				setValueAt(null, i, j);
+		data = DataContainer.getInstance();
 	}
 
 	@Override
@@ -38,7 +43,10 @@ class EditableTableModel extends AbstractTableModel {
 
 	@Override
 	public Class getColumnClass(final int column) {
-		return getValueAt(0, column).getClass();
+		if (getValueAt(0, column) == null)
+			return Double.class;
+		else
+			return getValueAt(0, column).getClass();
 	}
 
 	@Override
@@ -49,5 +57,17 @@ class EditableTableModel extends AbstractTableModel {
 	@Override
 	public void setValueAt(final Object value, final int row, final int column) {
 		dataEntries[row][column] = value;
+		if (row < dataEntries.length - 1) {
+			if (value != null) {
+				System.out.println("setValueAt[" + row + "][" + column + "] = " + value);
+				if (row < dataEntries.length - 2)
+					data.setValueAt((Double) value, row, column - 1);
+				else if (row == dataEntries.length - 1)
+					data.setCoefAt((Double) value, column - 1);
+			}
+		} else if (row == dataEntries.length - 1) {
+			data.setFavAt((Boolean) value, column - 1);
+			System.out.println("setValueAt[" + row + "][" + column + "] = " + value);
+		}
 	}
 }

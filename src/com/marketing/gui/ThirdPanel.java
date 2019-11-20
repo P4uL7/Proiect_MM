@@ -29,7 +29,7 @@ public class ThirdPanel extends JPanel {
 
 	public ThirdPanel() {
 		final DataContainer data = DataContainer.getInstance();
-		this.setPreferredSize(new Dimension(Math.min(1200, 170 + data.getCritCount() * 125), 90 + (data.getVarCount() + 1) * 16));
+		this.setPreferredSize(new Dimension(Math.min(1200, 170 + data.getCritCount() * 125), 90 + (data.getVarCount() + 2) * 16));
 		this.setBorder(new EmptyBorder(15, 15, 15, 15));
 
 		final JLabel title = new JLabel("Introduceti variabilele fiecarui criteriu:", SwingConstants.CENTER);
@@ -41,17 +41,21 @@ public class ThirdPanel extends JPanel {
 		for (int i = 0; i < data.getCriteriaNames().length; i++)
 			columnNames[i + 1] = data.getCriteriaNames()[i];
 
-		final Object[][] dataz = new Object[data.getVarCount() + 1][columnNames.length + 1];
+		final Object[][] dataz = new Object[data.getVarCount() + 2][columnNames.length + 1];
 		for (int i = 0; i < data.getVarCount(); i++)
 			for (int j = 0; j < columnNames.length + 1; j++)
 				if (j == 0)
-					dataz[i][j] = "Var" + (i + 1);
+					dataz[i][j] = "<html><b>Var" + (i + 1) + "</b></html>";
 				else
-					dataz[i][j] = "";
+					dataz[i][j] = new Double(0);
 
-		dataz[data.getVarCount()][0] = "";
+		dataz[data.getVarCount()][0] = "<html><b>coef</b></html>";
 		for (int j = 1; j < columnNames.length + 1; j++)
-			dataz[data.getVarCount()][j] = new Boolean(false);
+			dataz[data.getVarCount()][j] = new Double(0);
+
+		dataz[data.getVarCount() + 1][0] = "";
+		for (int j = 1; j < columnNames.length + 1; j++)
+			dataz[data.getVarCount() + 1][j] = new Boolean(false);
 
 		//
 		List<TableCellEditor> editors = new ArrayList<TableCellEditor>(data.getCritCount());
@@ -68,14 +72,14 @@ public class ThirdPanel extends JPanel {
 		final TableModel model = new EditableTableModel(columnNames, dataz);
 		final JTable table = new JTable(model) {
 			public TableCellEditor getCellEditor(int row, int column) {
-				if (row == data.getVarCount() && column != 0)
+				if (row == data.getVarCount() + 1 && column != 0)
 					return editors.get(column - 1);
 				else
 					return super.getCellEditor(row, column);
 			}
 
 			public TableCellRenderer getCellRenderer(int row, int column) {
-				if (row == data.getVarCount() && column != 0)
+				if (row == data.getVarCount() + 1 && column != 0)
 					return new CheckBoxCellRenderer(boxes[column - 1]);
 				else if (column == 0)
 					return super.getCellRenderer(row, column);
@@ -86,10 +90,11 @@ public class ThirdPanel extends JPanel {
 
 		table.createDefaultColumnsFromModel();
 		table.getTableHeader().setReorderingAllowed(false);
+		table.setRowSelectionAllowed(false);
 		((DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
 
 		final JScrollPane sp = new JScrollPane(table);
-		sp.setPreferredSize(new Dimension(Math.min(1100, data.getCritCount() * 125), 28 + (data.getVarCount() + 1) * 16));
+		sp.setPreferredSize(new Dimension(Math.min(1100, data.getCritCount() * 125), 28 + (data.getVarCount() + 2) * 16));
 		sp.setOpaque(true);
 		add(sp, BorderLayout.CENTER);
 
