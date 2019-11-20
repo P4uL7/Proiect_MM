@@ -135,8 +135,8 @@ public class ThirdPanel extends JPanel {
 		}
 
 		EventQueue.invokeLater(() -> {
-			final ThirdWindow third = new ThirdWindow();
-			third.setVisible(true);
+			final FourthWindow fourth = new FourthWindow();
+			fourth.setVisible(true);
 		});
 
 		((JFrame) parent).dispose();
