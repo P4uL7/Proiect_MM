@@ -25,6 +25,9 @@ public class FourthPanel extends JPanel {
 				System.out.println();
 			}
 			data.getValues();
+
+			data.getMaxVal();
+
 			showNextWindow();
 		});
 		add(button);

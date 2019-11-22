@@ -102,6 +102,8 @@ public class ThirdPanel extends JPanel {
 		final JButton button = new JButton("OK");
 		button.setPreferredSize(new Dimension(70, 25));
 		button.addActionListener(e -> {
+			data.populateUtilityMatrix();
+			data.populateGeneralUtility();
 			showNextWindow();
 		});
 		add(button);
