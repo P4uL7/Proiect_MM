@@ -128,8 +128,11 @@ public class Logic {
 	private void getCritVars() {
 		final Scanner scan = new Scanner(System.in);
 		System.out.println("Dati numele criteriilor urmate de enter:");
-		for (int j = 0; j < columns; j++)
+		for (int j = 0; j < columns; j++) {
+			System.out.print("name[" + j + "]: ");
 			criteriaName[j] = scan.nextLine();
+		}
+
 		scan.nextLine(); // cr
 		for (int j = 0; j < columns; j++) {
 			System.out.println("Introduceti variabilele criteriului " + criteriaName[j]);

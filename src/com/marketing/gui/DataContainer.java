@@ -50,7 +50,7 @@ public class DataContainer {
 				fav[i] = false;
 
 			utilityMatrix = new double[this.varCount][this.critCount];
-			generalUtility = new double[this.critCount];//
+			generalUtility = new double[this.varCount];//
 		}
 	}
 
@@ -66,15 +66,15 @@ public class DataContainer {
 		return values;
 	}
 
-	public void setValueAt(double value, int row, int column) {
+	public void setValueAt(final double value, final int row, final int column) {
 		this.values[row][column] = value;
 	}
 
-	public void setCoefAt(double value, int index) {
+	public void setCoefAt(final double value, final int index) {
 		this.coef[index] = value;
 	}
 
-	public void setFavAt(boolean value, int index) {
+	public void setFavAt(final boolean value, final int index) {
 		this.fav[index] = value;
 	}
 

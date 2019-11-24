@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -28,8 +29,12 @@ public class ThirdPanel extends JPanel {
 
 	public ThirdPanel() {
 		final DataContainer data = DataContainer.getInstance();
-		this.setPreferredSize(new Dimension(Math.min(1200, 170 + data.getCritCount() * 125), 90 + (data.getVarCount() + 2) * 16));
+		final int tableHeight = (data.getVarCount() + 2) * 20;
+		final int tableWidth = data.getCritCount() * 125;
+
+		this.setPreferredSize(new Dimension(Math.min(1200, 30 + tableWidth), 155 + tableHeight));
 		this.setBorder(new EmptyBorder(15, 15, 15, 15));
+		// this.setBorder(BorderFactory.createTitledBorder("yolo"));
 
 		final JLabel title = new JLabel("Introduceti variabilele fiecarui criteriu:", SwingConstants.CENTER);
 		title.setFont(new Font(title.getName(), Font.BOLD, 16));
@@ -52,7 +57,7 @@ public class ThirdPanel extends JPanel {
 		for (int j = 1; j < columnNames.length + 1; j++)
 			dataz[data.getVarCount()][j] = new Double(0);
 
-		dataz[data.getVarCount() + 1][0] = "";
+		dataz[data.getVarCount() + 1][0] = "<html><b>*</b></html>";
 		for (int j = 1; j < columnNames.length + 1; j++)
 			dataz[data.getVarCount() + 1][j] = new Boolean(false);
 
@@ -95,18 +100,36 @@ public class ThirdPanel extends JPanel {
 		((DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
 
 		final JScrollPane sp = new JScrollPane(table);
-		sp.setPreferredSize(new Dimension(Math.min(1100, data.getCritCount() * 125), 28 + (data.getVarCount() + 2) * 16));
+		sp.setPreferredSize(new Dimension(Math.min(1100, tableWidth), 24 + tableHeight));
 		sp.setOpaque(true);
 		add(sp, BorderLayout.CENTER);
 
+		final JPanel panel = new JPanel();
+		panel.setPreferredSize(new Dimension(Math.min(1200, 30 + tableWidth), 100));
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
 		final JButton button = new JButton("OK");
-		button.setPreferredSize(new Dimension(70, 25));
+		// button.setPreferredSize(new Dimension(70, 25));
+		button.setMaximumSize(new Dimension(70, 25));
 		button.addActionListener(e -> {
 			data.populateUtilityMatrix();
 			data.populateGeneralUtility();
 			showNextWindow();
 		});
-		add(button);
+
+		final JLabel info = new JLabel("<html><b>* Cea mai favorabila utilitate pentru criteriul </b></html>", SwingConstants.CENTER);
+		final JLabel info2 = new JLabel("<html><b>acesta este cea mai mare valoare?</b></html>", SwingConstants.CENTER);
+
+		info.setAlignmentX(Component.CENTER_ALIGNMENT);
+		info2.setAlignmentX(Component.CENTER_ALIGNMENT);
+		button.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+		panel.add(info);
+		panel.add(info2);
+		panel.add(new JLabel("   "));
+		panel.add(button);
+
+		add(panel);
 
 	}
 

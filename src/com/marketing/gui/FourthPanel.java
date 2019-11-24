@@ -4,6 +4,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,6 +14,7 @@ public class FourthPanel extends JPanel {
 	public FourthPanel() {
 		final DataContainer data = DataContainer.getInstance();
 
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setPreferredSize(new Dimension(550, 200));
 		this.setBorder(new EmptyBorder(5, 15, 5, 15));
 

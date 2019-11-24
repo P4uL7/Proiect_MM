@@ -21,7 +21,7 @@ public class MainPanel extends JPanel {
 	public MainPanel() {
 
 		this.setLayout(new GridLayout(3, 1, 5, 5));
-		this.setPreferredSize(new Dimension(550, 200));
+		this.setPreferredSize(new Dimension(550, 225));
 		this.setBorder(new EmptyBorder(5, 15, 5, 15));
 		final JLabel title = new JLabel("Metoda utilitatii globale", SwingConstants.CENTER);
 		title.setFont(new Font(title.getName(), Font.BOLD, 22));
@@ -37,7 +37,8 @@ public class MainPanel extends JPanel {
 			data.setCritCount(critCount.getText().isEmpty() ? 0 : Integer.parseInt(critCount.getText().trim()));
 			data.setVarCount(varCount.getText().isEmpty() ? 0 : Integer.parseInt(varCount.getText().trim()));
 
-			showNextWindow();
+			if (data.getCritCount() > 0 && data.getVarCount() > 0)
+				showNextWindow();
 		});
 		pan.add(button);
 

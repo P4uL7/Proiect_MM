@@ -7,6 +7,10 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 public class App extends JFrame {
+	public static final String THEME = "com.jtattoo.plaf.acryl.AcrylLookAndFeel";
+	// "com.jtattoo.plaf.texture.TextureLookAndFeel"
+	// "javax.swing.plaf.nimbus.NimbusLookAndFeel"
+	// "com.sun.java.swing.plaf.windows.WindowsLookAndFeel"
 
 	public App() {
 		initUI();
@@ -14,8 +18,7 @@ public class App extends JFrame {
 
 	private void initUI() {
 		try {
-			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-			// UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			UIManager.setLookAndFeel(THEME);
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
 			e.printStackTrace();
 		}
@@ -32,7 +35,9 @@ public class App extends JFrame {
 
 	public static void main(final String[] args) {
 		EventQueue.invokeLater(() -> {
-			final App app = new App();
+			App app = new App();
+			app.dispose(); // reboot the app
+			app = new App();
 			app.setVisible(true);
 		});
 	}
