@@ -29,7 +29,12 @@ public class FourthPanel extends JPanel {
 			for (int j = 0; j < data.getCritCount(); j++)
 				initialValues[i][j] = data.getValues()[i][j];
 
-		final DefaultTableModel initialModel = new DefaultTableModel(initialValues, data.getCriteriaNames());
+		final DefaultTableModel initialModel = new DefaultTableModel(initialValues, data.getCriteriaNames()) {
+			@Override
+			public boolean isCellEditable(final int row, final int column) {
+				return false;
+			}
+		};
 		final JTable initialTable = new JTable(initialModel);
 		initialTable.setTableHeader(null);
 
@@ -45,7 +50,12 @@ public class FourthPanel extends JPanel {
 			for (int j = 0; j < data.getCritCount(); j++)
 				utilityValues[i][j] = formatter.format(data.getUtilityMatrix()[i][j]);
 
-		final DefaultTableModel utilityModel = new DefaultTableModel(utilityValues, data.getCriteriaNames());
+		final DefaultTableModel utilityModel = new DefaultTableModel(utilityValues, data.getCriteriaNames()) {
+			@Override
+			public boolean isCellEditable(final int row, final int column) {
+				return false;
+			}
+		};
 		final JTable utilityTable = new JTable(utilityModel);
 		utilityTable.setTableHeader(null);
 
@@ -61,7 +71,12 @@ public class FourthPanel extends JPanel {
 			globalValues[i][1] = data.getGeneralUtility()[i];
 		}
 
-		final DefaultTableModel globalModel = new DefaultTableModel(globalValues, new String[] { "Var", "ut" });
+		final DefaultTableModel globalModel = new DefaultTableModel(globalValues, new String[] { "Var", "ut" }) {
+			@Override
+			public boolean isCellEditable(final int row, final int column) {
+				return false;
+			}
+		};
 		final JTable globalTable = new JTable(globalModel);
 		globalTable.setTableHeader(null);
 
