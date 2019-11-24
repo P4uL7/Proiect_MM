@@ -107,6 +107,10 @@ public class DataContainer {
 		}
 	}
 
+	public double[][] getUtilityMatrix() {
+		return this.utilityMatrix;
+	}
+
 	public void populateGeneralUtility() {
 		boolean areEqual = true;
 		for (int j = 1; j < this.critCount; j++)
@@ -125,6 +129,10 @@ public class DataContainer {
 			for (int i = 0; i < this.varCount; i++)
 				for (int j = 0; j < this.critCount; j++)
 					generalUtility[i] += utilityMatrix[i][j] * coef[j];
+	}
+
+	public double[] getGeneralUtility() {
+		return this.generalUtility;
 	}
 
 	public double getMaxVal() {
