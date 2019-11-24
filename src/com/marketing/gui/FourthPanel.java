@@ -21,7 +21,7 @@ public class FourthPanel extends JPanel {
 		final int tableHeight = data.getVarCount() * 20;
 		final int tableWidth = data.getCritCount() * 125;
 
-		this.setPreferredSize(new Dimension(Math.min(1200, 30 + tableWidth), 315 + tableHeight));
+		this.setPreferredSize(new Dimension(Math.min(1200, 30 + tableWidth), 155 + 3 * tableHeight));
 		this.setBorder(new EmptyBorder(15, 15, 15, 15));
 		//
 		final Object[][] initialValues = new Object[data.getVarCount()][data.getCritCount()];
@@ -55,10 +55,10 @@ public class FourthPanel extends JPanel {
 		utilitySP.setOpaque(true);
 		add(utilitySP);
 		//
-		final Object[][] globalValues = new Object[data.getVarCount()][2]; // TODO fix null
+		final Object[][] globalValues = new Object[data.getVarCount()][2];
 		for (int i = 0; i < data.getVarCount(); i++) {
-			initialValues[i][0] = "<html><b>Var" + (i + 1) + "</b></html>";
-			initialValues[i][1] = data.getGeneralUtility()[i];
+			globalValues[i][0] = "<html><b>Var" + (i + 1) + "</b></html>";
+			globalValues[i][1] = data.getGeneralUtility()[i];
 		}
 
 		final DefaultTableModel globalModel = new DefaultTableModel(globalValues, new String[] { "Var", "ut" });
