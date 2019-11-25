@@ -21,7 +21,7 @@ public class FourthPanel extends JPanel {
 		final int tableHeight = data.getVarCount() * 20;
 		final int tableWidth = data.getCritCount() * 125;
 
-		this.setPreferredSize(new Dimension(Math.min(1200, 30 + tableWidth), 155 + 3 * tableHeight));
+		this.setPreferredSize(new Dimension(Math.min(1200, 30 + tableWidth), 195 + 3 * tableHeight));
 		this.setBorder(new EmptyBorder(15, 15, 15, 15));
 		//
 		final Object[][] initialValues = new Object[data.getVarCount()][data.getCritCount()];
