@@ -36,11 +36,10 @@ public class FourthPanel extends JPanel {
 			}
 		};
 		final JTable initialTable = new JTable(initialModel);
-		initialTable.setTableHeader(null);
 
 		final JScrollPane initialSP = new JScrollPane(initialTable);
 		initialSP.setBorder(BorderFactory.createTitledBorder("<html><b>Matricea initiala</b></html>"));
-		initialSP.setPreferredSize(new Dimension(Math.min(1100, tableWidth), 24 + tableHeight));
+		initialSP.setPreferredSize(new Dimension(Math.min(1100, tableWidth), 45 + tableHeight));
 		initialSP.setOpaque(true);
 		add(initialSP);
 		//
@@ -57,11 +56,10 @@ public class FourthPanel extends JPanel {
 			}
 		};
 		final JTable utilityTable = new JTable(utilityModel);
-		utilityTable.setTableHeader(null);
 
 		final JScrollPane utilitySP = new JScrollPane(utilityTable);
 		utilitySP.setBorder(BorderFactory.createTitledBorder("<html><b>Matricea utilitatii</b></html>"));
-		utilitySP.setPreferredSize(new Dimension(Math.min(1100, tableWidth), 24 + tableHeight));
+		utilitySP.setPreferredSize(new Dimension(Math.min(1100, tableWidth), 45 + tableHeight));
 		utilitySP.setOpaque(true);
 		add(utilitySP);
 		//
