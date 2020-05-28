@@ -8,9 +8,6 @@
 	<property name="report.dir"
 		location="${build.dir}/site/jacoco" />
 	<property name="exec.file" location="${build.dir}/jacoco.exec" />
-	<property name="jar.dir" value="${build.dir}/jar" />
-
-	<property name="main-class" value="com.ant.test.Demo" />
 
 	<!-- Step 1: Import JaCoCo Ant tasks -->
 	<taskdef uri="antlib:org.jacoco.ant"
