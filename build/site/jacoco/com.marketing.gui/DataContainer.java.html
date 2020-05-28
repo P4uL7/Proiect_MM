@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataContainer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCo Ant Example</a> &gt; <a href="index.source.html" class="el_package">com.marketing.gui</a> &gt; <span class="el_source">DataContainer.java</span></div><h1>DataContainer.java</h1><pre class="source lang-java linenums">package com.marketing.gui;
+
+public class DataContainer {
+
+<span class="nc" id="L5">	private static DataContainer instance = null;</span>
+
+<span class="nc" id="L7">	private int critCount = 0;</span>
+<span class="nc" id="L8">	private int varCount = 0;</span>
+
+	private String[] criteriaName;
+
+	private double[][] values;
+	private double[] coef;
+	private boolean[] fav;
+
+	private double[][] utilityMatrix;
+	private double[] generalUtility;
+
+<span class="nc" id="L19">	private DataContainer() {</span>
+<span class="nc" id="L20">	}</span>
+
+	public static DataContainer getInstance() {
+<span class="nc bnc" id="L23" title="All 2 branches missed.">		if (instance == null)</span>
+<span class="nc" id="L24">			instance = new DataContainer();</span>
+
+<span class="nc" id="L26">		return instance;</span>
+	}
+
+	public int getCritCount() {
+<span class="nc" id="L30">		return critCount;</span>
+	}
+
+	public void setCritCount(final int critCount) {
+<span class="nc" id="L34">		this.critCount = critCount;</span>
+<span class="nc" id="L35">	}</span>
+
+	public int getVarCount() {
+<span class="nc" id="L38">		return varCount;</span>
+	}
+
+	public void setVarCount(final int varCount) {
+<span class="nc" id="L42">		this.varCount = varCount;</span>
+
+<span class="nc bnc" id="L44" title="All 4 branches missed.">		if (this.critCount != 0 &amp;&amp; this.varCount != 0) {</span>
+<span class="nc" id="L45">			values = new double[this.varCount][this.critCount];</span>
+
+<span class="nc" id="L47">			coef = new double[this.critCount];</span>
+<span class="nc" id="L48">			fav = new boolean[this.critCount];</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">			for (int i = 0; i &lt; fav.length; i++)</span>
+<span class="nc" id="L50">				fav[i] = false;</span>
+
+<span class="nc" id="L52">			utilityMatrix = new double[this.varCount][this.critCount];</span>
+<span class="nc" id="L53">			generalUtility = new double[this.varCount];//</span>
+		}
+<span class="nc" id="L55">	}</span>
+
+	public String[] getCriteriaNames() {
+<span class="nc" id="L58">		return criteriaName;</span>
+	}
+
+	public void setCriteriaNames(final String[] criteriaName) {
+<span class="nc" id="L62">		this.criteriaName = criteriaName;</span>
+<span class="nc" id="L63">	}</span>
+
+	public double[][] getValues() {
+<span class="nc" id="L66">		return values;</span>
+	}
+
+	public void setValueAt(final double value, final int row, final int column) {
+<span class="nc" id="L70">		this.values[row][column] = value;</span>
+<span class="nc" id="L71">	}</span>
+
+	public void setCoefAt(final double value, final int index) {
+<span class="nc" id="L74">		this.coef[index] = value;</span>
+<span class="nc" id="L75">	}</span>
+
+	public void setFavAt(final boolean value, final int index) {
+<span class="nc" id="L78">		this.fav[index] = value;</span>
+<span class="nc" id="L79">	}</span>
+
+	public void populateUtilityMatrix() {
+<span class="nc bnc" id="L82" title="All 2 branches missed.">		for (int j = 0; j &lt; this.critCount; j++) {</span>
+<span class="nc" id="L83">			double maxVal = 0d, minVal = values[0][j];</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">			for (int i = 0; i &lt; this.varCount; i++) {</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">				if (values[i][j] &gt; maxVal)</span>
+<span class="nc" id="L86">					maxVal = values[i][j];</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">				if (values[i][j] &lt; minVal)</span>
+<span class="nc" id="L88">					minVal = values[i][j];</span>
+			}
+
+<span class="nc bnc" id="L91" title="All 2 branches missed.">			if (fav[j] == true) {</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">				for (int i = 0; i &lt; this.varCount; i++)</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">					if (maxVal == values[i][j])</span>
+<span class="nc" id="L94">						utilityMatrix[i][j] = 1d;</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">					else if (minVal == values[i][j])</span>
+<span class="nc" id="L96">						utilityMatrix[i][j] = 0d;</span>
+					else
+<span class="nc" id="L98">						utilityMatrix[i][j] = (values[i][j] - minVal) / (maxVal - minVal);</span>
+			} else
+<span class="nc bnc" id="L100" title="All 2 branches missed.">				for (int i = 0; i &lt; this.varCount; i++)</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">					if (maxVal == values[i][j])</span>
+<span class="nc" id="L102">						utilityMatrix[i][j] = 0d;</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">					else if (minVal == values[i][j])</span>
+<span class="nc" id="L104">						utilityMatrix[i][j] = 1d;</span>
+					else
+<span class="nc" id="L106">						utilityMatrix[i][j] = (values[i][j] - maxVal) / (minVal - maxVal);</span>
+		}
+<span class="nc" id="L108">	}</span>
+
+	public double[][] getUtilityMatrix() {
+<span class="nc" id="L111">		return this.utilityMatrix;</span>
+	}
+
+	public void populateGeneralUtility() {
+<span class="nc" id="L115">		boolean areEqual = true;</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">		for (int j = 1; j &lt; this.critCount; j++)</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">			if (coef[j - 1] != coef[j]) {</span>
+<span class="nc" id="L118">				areEqual = false;</span>
+<span class="nc" id="L119">				break;</span>
+			}
+
+<span class="nc bnc" id="L122" title="All 2 branches missed.">		for (int i = 0; i &lt; this.varCount; i++) // error</span>
+<span class="nc" id="L123">			generalUtility[i] = 0d;</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">		if (areEqual)</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">			for (int i = 0; i &lt; this.varCount; i++)</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">				for (int j = 0; j &lt; this.critCount; j++)</span>
+<span class="nc" id="L127">					generalUtility[i] += utilityMatrix[i][j];</span>
+		else
+<span class="nc bnc" id="L129" title="All 2 branches missed.">			for (int i = 0; i &lt; this.varCount; i++)</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">				for (int j = 0; j &lt; this.critCount; j++)</span>
+<span class="nc" id="L131">					generalUtility[i] += utilityMatrix[i][j] * coef[j];</span>
+<span class="nc" id="L132">	}</span>
+
+	public double[] getGeneralUtility() {
+<span class="nc" id="L135">		return this.generalUtility;</span>
+	}
+
+	public double getMaxVal() {
+<span class="nc" id="L139">		double maxVal = 0d;</span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">		for (int i = 0; i &lt; this.varCount; i++)</span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">			if (generalUtility[i] &gt; maxVal)</span>
+<span class="nc" id="L142">				maxVal = generalUtility[i];</span>
+<span class="nc" id="L143">		System.out.printf(&quot;Varianta optima este: %.3f&quot;, maxVal);</span>
+
+<span class="nc" id="L145">		return maxVal;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

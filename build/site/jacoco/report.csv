@@ -1,0 +1,22 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+JaCoCo Ant Example,com.marketing.gui,ThirdWindow,32,0,0,0,14,0,2,0,2,0
+JaCoCo Ant Example,com.marketing.gui,ThirdPanel.CheckBoxCellRenderer,12,0,0,0,4,0,2,0,2,0
+JaCoCo Ant Example,com.marketing.gui,FourthWindow,32,0,0,0,14,0,2,0,2,0
+JaCoCo Ant Example,com.marketing.gui,App,3,46,0,0,2,19,0,4,0,4
+JaCoCo Ant Example,com.marketing.gui,ThirdPanel,409,0,16,0,74,0,12,0,4,0
+JaCoCo Ant Example,com.marketing.gui,EditableTableModel,178,0,18,0,28,0,17,0,8,0
+JaCoCo Ant Example,com.marketing.gui,SecondPanel,265,0,10,0,49,0,9,0,4,0
+JaCoCo Ant Example,com.marketing.gui,SecondWindow,32,0,0,0,14,0,2,0,2,0
+JaCoCo Ant Example,com.marketing.gui,MainPanel,66,163,10,0,16,30,8,2,3,2
+JaCoCo Ant Example,com.marketing.gui,FourthPanel.new DefaultTableModel() {...},10,0,0,0,2,0,2,0,2,0
+JaCoCo Ant Example,com.marketing.gui,FourthPanel.new DefaultTableModel() {...},10,0,0,0,2,0,2,0,2,0
+JaCoCo Ant Example,com.marketing.gui,FourthPanel.new DefaultTableModel() {...},10,0,0,0,2,0,2,0,2,0
+JaCoCo Ant Example,com.marketing.gui,ThirdPanel.new JTable() {...},72,0,10,0,9,0,8,0,3,0
+JaCoCo Ant Example,com.marketing.gui,ThirdPanel.CenterCellRenderer,8,0,0,0,2,0,2,0,2,0
+JaCoCo Ant Example,com.marketing.gui,FourthPanel,355,0,12,0,56,0,8,0,2,0
+JaCoCo Ant Example,com.marketing.gui,DataContainer,444,0,50,0,76,0,43,0,18,0
+JaCoCo Ant Example,com.marketing.test,TableComboBoxByRow.new JTable() {...},50,0,8,0,8,0,7,0,3,0
+JaCoCo Ant Example,com.marketing.test,TableComboBoxByRow,157,0,0,0,23,0,2,0,2,0
+JaCoCo Ant Example,com.marketing.test,TableComboBoxByRow.CheckBoxCellRenderer,12,0,0,0,4,0,2,0,2,0
+JaCoCo Ant Example,com.marketing.logic,Logic,559,0,52,0,98,0,39,0,13,0
+JaCoCo Ant Example,com.marketing.logic,Main,10,0,0,0,4,0,2,0,2,0

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ThirdWindow.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCo Ant Example</a> &gt; <a href="index.source.html" class="el_package">com.marketing.gui</a> &gt; <span class="el_source">ThirdWindow.java</span></div><h1>ThirdWindow.java</h1><pre class="source lang-java linenums">package com.marketing.gui;
+
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+public class ThirdWindow extends JFrame {
+
+<span class="nc" id="L9">	public ThirdWindow() {</span>
+<span class="nc" id="L10">		initUI();</span>
+<span class="nc" id="L11">	}</span>
+
+	private void initUI() {
+		try {
+<span class="nc" id="L15">			UIManager.setLookAndFeel(App.THEME);</span>
+<span class="nc" id="L16">		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {</span>
+<span class="nc" id="L17">			e.printStackTrace();</span>
+<span class="nc" id="L18">		}</span>
+
+<span class="nc" id="L20">		add(new ThirdPanel());</span>
+
+<span class="nc" id="L22">		pack();</span>
+
+<span class="nc" id="L24">		setTitle(&quot;Proiect MM&quot;);</span>
+<span class="nc" id="L25">		setResizable(false);</span>
+<span class="nc" id="L26">		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L27">		setLocationRelativeTo(null);</span>
+<span class="nc" id="L28">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

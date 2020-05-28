@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MainPanel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCo Ant Example</a> &gt; <a href="index.source.html" class="el_package">com.marketing.gui</a> &gt; <span class="el_source">MainPanel.java</span></div><h1>MainPanel.java</h1><pre class="source lang-java linenums">package com.marketing.gui;
+
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+public class MainPanel extends JPanel {
+	JTextField critCount;
+	JTextField varCount;
+
+<span class="fc" id="L21">	public MainPanel() {</span>
+
+<span class="fc" id="L23">		this.setLayout(new GridLayout(3, 1, 5, 5));</span>
+<span class="fc" id="L24">		this.setPreferredSize(new Dimension(550, 225));</span>
+<span class="fc" id="L25">		this.setBorder(new EmptyBorder(5, 15, 5, 15));</span>
+<span class="fc" id="L26">		final JLabel title = new JLabel(&quot;Metoda utilitatii globale&quot;, SwingConstants.CENTER);</span>
+<span class="fc" id="L27">		title.setFont(new Font(title.getName(), Font.BOLD, 22));</span>
+
+<span class="fc" id="L29">		add(title);</span>
+<span class="fc" id="L30">		add(pan());</span>
+
+<span class="fc" id="L32">		final JPanel pan = new JPanel();</span>
+<span class="fc" id="L33">		final JButton button = new JButton(&quot;OK&quot;);</span>
+<span class="fc" id="L34">		button.setPreferredSize(new Dimension(60, 25));</span>
+<span class="fc" id="L35">		button.addActionListener(e -&gt; {</span>
+<span class="nc" id="L36">			final DataContainer data = DataContainer.getInstance();</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">			data.setCritCount(critCount.getText().isEmpty() ? 0 : Integer.parseInt(critCount.getText().trim()));</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">			data.setVarCount(varCount.getText().isEmpty() ? 0 : Integer.parseInt(varCount.getText().trim()));</span>
+
+<span class="nc bnc" id="L40" title="All 4 branches missed.">			if (data.getCritCount() &gt; 0 &amp;&amp; data.getVarCount() &gt; 0)</span>
+<span class="nc" id="L41">				showNextWindow();</span>
+<span class="nc" id="L42">		});</span>
+<span class="fc" id="L43">		pan.add(button);</span>
+
+<span class="fc" id="L45">		add(pan);</span>
+<span class="fc" id="L46">	}</span>
+
+	private void showNextWindow() {
+<span class="nc" id="L49">		Container parent = getParent();</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">		while (parent.getParent() != null) {</span>
+<span class="nc" id="L51">			parent = parent.getParent();</span>
+<span class="nc" id="L52">			System.out.println(parent);</span>
+		}
+
+<span class="nc" id="L55">		EventQueue.invokeLater(() -&gt; {</span>
+<span class="nc" id="L56">			final SecondWindow second = new SecondWindow();</span>
+<span class="nc" id="L57">			second.setVisible(true);</span>
+<span class="nc" id="L58">		});</span>
+
+<span class="nc" id="L60">		((JFrame) parent).dispose();</span>
+<span class="nc" id="L61">	}</span>
+
+	private JPanel pan() {
+<span class="fc" id="L64">		final JPanel pan = new JPanel();</span>
+<span class="fc" id="L65">		pan.setLayout(new GridLayout(2, 1, 5, 5));</span>
+
+<span class="fc" id="L67">		final JPanel top = new JPanel();</span>
+<span class="fc" id="L68">		top.add(new JLabel(&quot;Care este numarul de criterii pe care doriti sa le introduceti?&quot;, SwingConstants.LEFT));</span>
+<span class="fc" id="L69">		critCount = new JTextField();</span>
+<span class="fc" id="L70">		critCount.setPreferredSize(new Dimension(60, 25));</span>
+<span class="fc" id="L71">		top.add(critCount);</span>
+
+<span class="fc" id="L73">		final JPanel bottom = new JPanel();</span>
+<span class="fc" id="L74">		bottom.add(new JLabel(&quot;Care este numarul de variabile pe care doriti ca fiecare criteriu sa le aibe?&quot;, SwingConstants.LEFT));</span>
+<span class="fc" id="L75">		varCount = new JTextField();</span>
+<span class="fc" id="L76">		varCount.setPreferredSize(new Dimension(60, 25));</span>
+<span class="fc" id="L77">		bottom.add(varCount);</span>
+
+<span class="fc" id="L79">		pan.add(top);</span>
+<span class="fc" id="L80">		pan.add(bottom);</span>
+
+<span class="fc" id="L82">		return pan;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

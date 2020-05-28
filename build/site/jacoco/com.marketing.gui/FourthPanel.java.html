@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FourthPanel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCo Ant Example</a> &gt; <a href="index.source.html" class="el_package">com.marketing.gui</a> &gt; <span class="el_source">FourthPanel.java</span></div><h1>FourthPanel.java</h1><pre class="source lang-java linenums">package com.marketing.gui;
+
+import java.awt.Container;
+import java.awt.Dimension;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+public class FourthPanel extends JPanel {
+<span class="nc" id="L19">	public FourthPanel() {</span>
+<span class="nc" id="L20">		final DataContainer data = DataContainer.getInstance();</span>
+<span class="nc" id="L21">		final int tableHeight = data.getVarCount() * 20;</span>
+<span class="nc" id="L22">		final int tableWidth = data.getCritCount() * 125;</span>
+
+<span class="nc" id="L24">		this.setPreferredSize(new Dimension(Math.min(1200, 30 + tableWidth), 195 + 3 * tableHeight));</span>
+<span class="nc" id="L25">		this.setBorder(new EmptyBorder(15, 15, 15, 15));</span>
+		//
+<span class="nc" id="L27">		final Object[][] initialValues = new Object[data.getVarCount()][data.getCritCount()];</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">		for (int i = 0; i &lt; data.getVarCount(); i++)</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">			for (int j = 0; j &lt; data.getCritCount(); j++)</span>
+<span class="nc" id="L30">				initialValues[i][j] = data.getValues()[i][j];</span>
+
+<span class="nc" id="L32">		final DefaultTableModel initialModel = new DefaultTableModel(initialValues, data.getCriteriaNames()) {</span>
+			@Override
+			public boolean isCellEditable(final int row, final int column) {
+<span class="nc" id="L35">				return false;</span>
+			}
+		};
+<span class="nc" id="L38">		final JTable initialTable = new JTable(initialModel);</span>
+
+<span class="nc" id="L40">		final JScrollPane initialSP = new JScrollPane(initialTable);</span>
+<span class="nc" id="L41">		initialSP.setBorder(BorderFactory.createTitledBorder(&quot;&lt;html&gt;&lt;b&gt;Matricea initiala&lt;/b&gt;&lt;/html&gt;&quot;));</span>
+<span class="nc" id="L42">		initialSP.setPreferredSize(new Dimension(Math.min(1100, tableWidth), 45 + tableHeight));</span>
+<span class="nc" id="L43">		initialSP.setOpaque(true);</span>
+<span class="nc" id="L44">		add(initialSP);</span>
+		//
+<span class="nc" id="L46">		final NumberFormat formatter = new DecimalFormat(&quot;0.00&quot;);</span>
+<span class="nc" id="L47">		final Object[][] utilityValues = new Object[data.getVarCount()][data.getCritCount()];</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">		for (int i = 0; i &lt; data.getVarCount(); i++)</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">			for (int j = 0; j &lt; data.getCritCount(); j++)</span>
+<span class="nc" id="L50">				utilityValues[i][j] = formatter.format(data.getUtilityMatrix()[i][j]);</span>
+
+<span class="nc" id="L52">		final DefaultTableModel utilityModel = new DefaultTableModel(utilityValues, data.getCriteriaNames()) {</span>
+			@Override
+			public boolean isCellEditable(final int row, final int column) {
+<span class="nc" id="L55">				return false;</span>
+			}
+		};
+<span class="nc" id="L58">		final JTable utilityTable = new JTable(utilityModel);</span>
+
+<span class="nc" id="L60">		final JScrollPane utilitySP = new JScrollPane(utilityTable);</span>
+<span class="nc" id="L61">		utilitySP.setBorder(BorderFactory.createTitledBorder(&quot;&lt;html&gt;&lt;b&gt;Matricea utilitatii&lt;/b&gt;&lt;/html&gt;&quot;));</span>
+<span class="nc" id="L62">		utilitySP.setPreferredSize(new Dimension(Math.min(1100, tableWidth), 45 + tableHeight));</span>
+<span class="nc" id="L63">		utilitySP.setOpaque(true);</span>
+<span class="nc" id="L64">		add(utilitySP);</span>
+		//
+<span class="nc" id="L66">		final Object[][] globalValues = new Object[data.getVarCount()][2];</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">		for (int i = 0; i &lt; data.getVarCount(); i++) {</span>
+<span class="nc" id="L68">			globalValues[i][0] = &quot;&lt;html&gt;&lt;b&gt;Var&quot; + (i + 1) + &quot;&lt;/b&gt;&lt;/html&gt;&quot;;</span>
+<span class="nc" id="L69">			globalValues[i][1] = data.getGeneralUtility()[i];</span>
+		}
+
+<span class="nc" id="L72">		final DefaultTableModel globalModel = new DefaultTableModel(globalValues, new String[] { &quot;Var&quot;, &quot;ut&quot; }) {</span>
+			@Override
+			public boolean isCellEditable(final int row, final int column) {
+<span class="nc" id="L75">				return false;</span>
+			}
+		};
+<span class="nc" id="L78">		final JTable globalTable = new JTable(globalModel);</span>
+<span class="nc" id="L79">		globalTable.setTableHeader(null);</span>
+
+<span class="nc" id="L81">		final JScrollPane globalSP = new JScrollPane(globalTable);</span>
+<span class="nc" id="L82">		globalSP.setBorder(BorderFactory.createTitledBorder(&quot;&lt;html&gt;&lt;b&gt;Utilitatea globala a fiecarei variabile&lt;/b&gt;&lt;/html&gt;&quot;));</span>
+<span class="nc" id="L83">		globalSP.setPreferredSize(new Dimension(Math.min(1100, tableWidth), 24 + tableHeight));</span>
+<span class="nc" id="L84">		globalSP.setOpaque(true);</span>
+<span class="nc" id="L85">		add(globalSP);</span>
+		//
+<span class="nc" id="L87">		final String maxVal = &quot;&quot; + formatter.format(data.getMaxVal());</span>
+<span class="nc" id="L88">		final JLabel variantaOptima = new JLabel(&quot;&lt;html&gt;   Varianta optima:  &lt;b&gt;&quot; + maxVal + &quot;   &lt;/b&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L89">		variantaOptima.setBorder(BorderFactory.createTitledBorder(&quot;&lt;html&gt;&lt;b&gt;Result&lt;/b&gt;&lt;/html&gt;&quot;));</span>
+
+<span class="nc" id="L91">		add(variantaOptima);</span>
+		//
+<span class="nc" id="L93">		final JButton button = new JButton(&quot;Close&quot;);</span>
+<span class="nc" id="L94">		button.setPreferredSize(new Dimension(60, 25));</span>
+<span class="nc" id="L95">		button.addActionListener(e -&gt; {</span>
+<span class="nc" id="L96">			Container parent = getParent();</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">			while (parent.getParent() != null) {</span>
+<span class="nc" id="L98">				parent = parent.getParent();</span>
+<span class="nc" id="L99">				System.out.println(parent);</span>
+			}
+
+<span class="nc" id="L102">			((JFrame) parent).dispose();</span>
+<span class="nc" id="L103">		});</span>
+<span class="nc" id="L104">		add(button);</span>
+
+<span class="nc" id="L106">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
