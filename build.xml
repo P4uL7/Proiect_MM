@@ -1,0 +1,65 @@
+<project xmlns:jacoco="antlib:org.jacoco.ant"
+	name="JaCoCo_Marketing_Ex" basedir="." default="main">
+
+	<property name="src.dir" value="src" />
+
+	<property name="build.dir" value="build" />
+	<property name="classes.dir" value="${build.dir}/classes" />
+	<property name="report.dir"
+		location="${build.dir}/site/jacoco" />
+	<property name="exec.file" location="${build.dir}/jacoco.exec" />
+	<property name="jar.dir" value="${build.dir}/jar" />
+
+	<property name="main-class" value="com.ant.test.Demo" />
+
+	<!-- Step 1: Import JaCoCo Ant tasks -->
+	<taskdef uri="antlib:org.jacoco.ant"
+		resource="org/jacoco/ant/antlib.xml">
+		<classpath path="res/jacocoant.jar" />
+	</taskdef>
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+
+	<target name="compile">
+		<mkdir dir="${classes.dir}" />
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" debug="true"
+			includeantruntime="false" />
+	</target>
+
+	<target name="test" depends="compile">
+		<!-- Step 2: Wrap test execution with the JaCoCo coverage task -->
+		<jacoco:coverage destfile="${exec.file}">
+			<java classname="com.marketing.gui.App" fork="true">
+				<classpath path="${classes.dir}" />
+			</java>
+		</jacoco:coverage>
+	</target>
+
+	<target name="report" depends="test">
+		<!-- Step 3: Create coverage report -->
+		<jacoco:report>
+			<!-- This task needs the collected execution data and ... -->
+			<executiondata>
+				<file file="${exec.file}" />
+			</executiondata>
+			<!-- the class files and optional source files ... -->
+			<structure name="JaCoCo Ant Example">
+				<classfiles>
+					<fileset dir="${classes.dir}" />
+				</classfiles>
+				<sourcefiles encoding="UTF-8">
+					<fileset dir="${src.dir}" />
+				</sourcefiles>
+			</structure>
+			<!-- to produce reports in different formats. -->
+			<html destdir="${report.dir}" />
+			<csv destfile="${report.dir}/report.csv" />
+			<xml destfile="${report.dir}/report.xml" />
+		</jacoco:report>
+	</target>
+
+	<target name="main" depends="clean,compile,test,report" />
+
+</project>
